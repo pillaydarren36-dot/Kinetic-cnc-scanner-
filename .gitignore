@@ -1,0 +1,3 @@
+git remote add origin https://github.com/pillaydarren36-dot/Kinetic-cnc-quality-control-.git
+git branch -M main
+git push -u origin main
