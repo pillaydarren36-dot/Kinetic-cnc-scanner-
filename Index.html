@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic CNC Traceability</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        #reader { width: 100%; max-width: 500px; margin: 20px auto; border: 2px solid #333; }
+        .log { margin-top: 20px; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Kinetic CNC Scanner</h1>
+    <div id="reader"></div>
+    <div id="result">Waiting for scan...</div>
+    <div class="log" id="log"></div>
+
+    <script>
+        function onScanSuccess(decodedText) {
+            document.getElementById('result').innerText = `Part ID: ${decodedText}`;
+            document.getElementById('log').innerText = `Last Scanned: ${new Date().toLocaleTimeString()} - Status: IN_PROGRESS`;
+            // In a real app, you would fetch() this to your database here
+        }
+        let html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess);
+    </script>
+</body>
+</html>
